@@ -8,7 +8,7 @@ import com.mongodb.MongoClient;
 
 public class MongoDBConnectionHelper {
 	private static String DB_URL = "localhost";
-	private static String DB_NAME = "testdb";
+	private static String DB_NAME = "sensitouch";
 	private final static int MONGO_DB_PORT_NO = 27017;
 	private static DBCollection conn;
 

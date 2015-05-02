@@ -13,7 +13,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import com.app.restapi.todo.domain.Sensor;
 import com.app.restapi.todo.domain.TodoList;
+import com.app.restapi.todo.domain.User;
 import com.app.restapi.todo.smsservice.SmsService;
 import com.app.restapi.todo.smsservice.SmsService_impl;
 import com.app.todo.dao.DaoService;
@@ -24,18 +26,32 @@ import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
-@Path("/todoService")
-public class TODOResource_impl implements TODOResource {
+@Path("/sensitouch/sensor")
+public class SensorController_impl {
 	@POST
 	@Consumes("application/json")
-	public Response createTodo(TodoList todolist, @Context UriInfo uriInfo) {
-		MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
+	public Response CreateUser(User user, @Context UriInfo uriInfo) {
+		return null;
+		/*MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
 		List<String> todoidlist = daoHelper.processCreateRequest(todolist);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		builder.path(new Gson().toJson(todoidlist));
 		SmsService service = new SmsService_impl();
 		service.sendSms("Hello","","");
+		return Response.created(builder.build()).build();*/
+		
+		
+	}
+	@Path("/create")
+	@POST
+	@Consumes("application/json")
+	public Response CreateSensors(Sensor sensor, @Context UriInfo uriInfo) {
+		MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
+		DBObject db = daoHelper.processCreateSensorRequest(sensor);
+		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		return Response.created(builder.build()).build();
+		
+		
 	}
 
 	@GET
@@ -47,7 +63,7 @@ public class TODOResource_impl implements TODOResource {
 		DaoService service = new DaoService_impl();
 		try {
 			objList = service.retrieveAllTodo(searchQuery,
-					MongoDBConnectionHelper.getCollection("todo"));
+					MongoDBConnectionHelper.getCollection("sensor"));
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

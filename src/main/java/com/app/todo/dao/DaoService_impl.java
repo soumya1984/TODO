@@ -3,6 +3,7 @@ package com.app.todo.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.app.restapi.todo.domain.Sensor;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -45,6 +46,20 @@ public class DaoService_impl implements DaoService {
 			DBCollection collectionName, String id) {
 		// / collectionName.find();
 		return null;
+	}
+
+	public void saveObject(DBCollection collectionName, DBObject db) {
+		collectionName.insert(db);
+	}
+
+	public List<DBObject> retrieveSensor(BasicDBObject dbObj,
+			DBCollection collectionName) {
+		List<DBObject> dbOBJ = new ArrayList<DBObject>();
+		DBCursor cursor = collectionName.find();
+		while (cursor.hasNext()) {
+			dbOBJ.add(cursor.next());
+		}
+		return dbOBJ;
 	}
 
 }

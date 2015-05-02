@@ -5,10 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.app.restapi.todo.domain.Sensor;
 import com.app.restapi.todo.domain.Todo;
 import com.app.restapi.todo.domain.TodoList;
 import com.app.todo.mongodb.MongoDBConnectionHelper;
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.util.JSON;
 
 public class MongoDAOProcessHelper {
 	
@@ -36,6 +40,27 @@ public class MongoDAOProcessHelper {
 		}
 		return string;
 		
+	}
+	
+	public DBObject processCreateSensorRequest(Sensor sensor) {
+		DaoService service = new DaoService_impl();
+		UUID Id = UUID.randomUUID();
+		
+		sensor.setSensorId(Id.toString());
+		
+		Gson gson = new Gson();
+		DBObject db = (DBObject) JSON.parse( gson.toJson(sensor));
+		
+		try {
+			service.saveObject(MongoDBConnectionHelper.getCollection("sensor"), db);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return db;
+		
+				
 	}
 
 }

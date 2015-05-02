@@ -5,31 +5,38 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.junit.Test;
+
+import com.app.restapi.todo.domain.Sensor;
+import com.app.restapi.todo.domain.Todo;
+import com.app.restapi.todo.domain.TodoList;
+import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
-import org.apache.http.HttpException;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.junit.Test;
-
-import com.app.restapi.todo.domain.Todo;
-import com.app.restapi.todo.domain.TodoList;
-import com.google.gson.Gson;
-
 public class TODOResourceImpl_Test {
+
 	@Test
+	public void testGetSensor() {
+		Sensor sensor = new Sensor();
+		sensor.setSensorName("MySensor");
+		sensor.setLatitude(37L);
+		sensor.setLatitude(121L);
+		sensor.setSensorStatus("Active");
+		sensor.setUserid(123);
+		
+		System.out.println("Sensor:" + new Gson().toJson(sensor));
+		
+		
+	}
+	
+	//@Test
 	public void testJson() {
 		try {
 
@@ -71,7 +78,7 @@ public class TODOResourceImpl_Test {
 
 	}
 
-	@Test
+	//@Test
 	public void testSendGet() {
 		URL url;
 		try {
