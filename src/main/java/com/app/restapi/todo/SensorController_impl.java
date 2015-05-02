@@ -32,16 +32,9 @@ public class SensorController_impl {
 	@Consumes("application/json")
 	public Response CreateUser(User user, @Context UriInfo uriInfo) {
 		return null;
-		/*MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
-		List<String> todoidlist = daoHelper.processCreateRequest(todolist);
-		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		builder.path(new Gson().toJson(todoidlist));
-		SmsService service = new SmsService_impl();
-		service.sendSms("Hello","","");
-		return Response.created(builder.build()).build();*/
-		
-		
+
 	}
+
 	@Path("/create")
 	@POST
 	@Consumes("application/json")
@@ -50,8 +43,7 @@ public class SensorController_impl {
 		DBObject db = daoHelper.processCreateSensorRequest(sensor);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		return Response.created(builder.build()).build();
-		
-		
+
 	}
 
 	@GET
@@ -74,8 +66,5 @@ public class SensorController_impl {
 		return Response.created(builder.build()).status(200)
 				.entity(new Gson().toJson(objList)).build();
 	}
-	
-	
-	
 
 }
