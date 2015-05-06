@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlType;
 		"addressLine1", "addressLine2" ,"city","country","zip"})
 public class User {
 	
-	private int userId;
+	private String userId;
 	private String firstName;
 	private String lastName;
 	private String mobile;
@@ -26,7 +26,7 @@ public class User {
 	 * @return the userId
 	 */
 	@XmlElement
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
@@ -115,7 +115,7 @@ public class User {
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

@@ -19,6 +19,8 @@ public interface DaoService {
 	
 	public List<DBObject> retrieveSensor(BasicDBObject dbObj,
 			DBCollection collectionName);
+	public List<DBObject> retrieveUsers(BasicDBObject dbObj,
+			DBCollection collectionName);
 
 	public BasicDBObject deleteRecoed(BasicDBObject dbObj,
 			DBCollection collectionName);

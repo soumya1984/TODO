@@ -15,6 +15,7 @@ import org.junit.Test;
 import com.app.restapi.todo.domain.Sensor;
 import com.app.restapi.todo.domain.Todo;
 import com.app.restapi.todo.domain.TodoList;
+import com.app.restapi.todo.domain.User;
 import com.google.gson.Gson;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -30,13 +31,29 @@ public class TODOResourceImpl_Test {
 		sensor.setLatitude(121L);
 		sensor.setSensorStatus("Active");
 		sensor.setUserid(123);
-		
+
 		System.out.println("Sensor:" + new Gson().toJson(sensor));
-		
-		
+
 	}
-	
-	//@Test
+	@Test
+	public void testGetUser() {
+		User user = new User();
+		user.setAddressLine1("address 1");
+		user.setAddressLine2("addressLine2");
+		user.setCity("fremont");
+		user.setCountry("Alameda");
+		user.setEmailId("cse.soumya@gmail.com");
+		user.setFirstName("Soumya");
+		user.setLastName("Acharya");
+		user.setMobile("650-8635694");
+		user.setZip(94538);
+		//user.setUserId("12345");
+
+		System.out.println("Sensor:" + new Gson().toJson(user));
+
+	}
+
+	// @Test
 	public void testJson() {
 		try {
 
@@ -78,12 +95,11 @@ public class TODOResourceImpl_Test {
 
 	}
 
-	//@Test
+	// @Test
 	public void testSendGet() {
 		URL url;
 		try {
-			url = new URL(
-					"http://localhost:8080/TODO/rest/todoService");
+			url = new URL("http://localhost:8080/TODO/rest/todoService");
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");

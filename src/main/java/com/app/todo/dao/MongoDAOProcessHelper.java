@@ -8,6 +8,7 @@ import java.util.UUID;
 import com.app.restapi.todo.domain.Sensor;
 import com.app.restapi.todo.domain.Todo;
 import com.app.restapi.todo.domain.TodoList;
+import com.app.restapi.todo.domain.User;
 import com.app.todo.mongodb.MongoDBConnectionHelper;
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
@@ -53,6 +54,27 @@ public class MongoDAOProcessHelper {
 		
 		try {
 			service.saveObject(MongoDBConnectionHelper.getCollection("sensor"), db);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return db;
+		
+				
+	}
+	
+	public DBObject processCreateUserRequest(User user) {
+		DaoService service = new DaoService_impl();
+		UUID Id = UUID.randomUUID();
+		
+		user.setUserId(Id.toString());
+		
+		Gson gson = new Gson();
+		DBObject db = (DBObject) JSON.parse( gson.toJson(user));
+		
+		try {
+			service.saveObject(MongoDBConnectionHelper.getCollection("user"), db);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

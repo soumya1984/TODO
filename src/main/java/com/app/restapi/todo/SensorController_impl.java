@@ -28,13 +28,13 @@ import com.mongodb.DBObject;
 
 @Path("/sensitouch/sensor")
 public class SensorController_impl {
-	@POST
-	@Consumes("application/json")
-	public Response CreateUser(User user, @Context UriInfo uriInfo) {
-		return null;
-
-	}
-
+	/**
+	 * Service to add a new sensor into the system
+	 * 
+	 * @param sensor
+	 * @param uriInfo
+	 * @return
+	 */
 	@Path("/create")
 	@POST
 	@Consumes("application/json")
@@ -46,6 +46,11 @@ public class SensorController_impl {
 
 	}
 
+     /**
+      * Get the list of the sensors
+      * @param uriInfo
+      * @return
+      */
 	@GET
 	@Produces({ "application/xml", "application/json" })
 	public Response searchTodobyId(@Context UriInfo uriInfo) {
@@ -54,7 +59,7 @@ public class SensorController_impl {
 		// searchQuery.put("_id", id);
 		DaoService service = new DaoService_impl();
 		try {
-			objList = service.retrieveAllTodo(searchQuery,
+			objList = service.retrieveSensor(searchQuery,
 					MongoDBConnectionHelper.getCollection("sensor"));
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block

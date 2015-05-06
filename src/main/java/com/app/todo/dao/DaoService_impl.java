@@ -61,5 +61,15 @@ public class DaoService_impl implements DaoService {
 		}
 		return dbOBJ;
 	}
+	
+	public List<DBObject> retrieveUsers(BasicDBObject dbObj,
+			DBCollection collectionName) {
+		List<DBObject> dbOBJ = new ArrayList<DBObject>();
+		DBCursor cursor = collectionName.find();
+		while (cursor.hasNext()) {
+			dbOBJ.add(cursor.next());
+		}
+		return dbOBJ;
+	}
 
 }
