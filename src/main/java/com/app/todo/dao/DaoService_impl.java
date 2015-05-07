@@ -3,7 +3,6 @@ package com.app.todo.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.app.restapi.todo.domain.Sensor;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;

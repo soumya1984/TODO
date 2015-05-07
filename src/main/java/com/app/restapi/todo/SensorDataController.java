@@ -7,13 +7,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
-import com.app.restapi.todo.domain.Sensor;
+import com.app.restapi.todo.domain.SensorData;
 import com.app.todo.dao.DaoService;
 import com.app.todo.dao.DaoService_impl;
 import com.app.todo.dao.MongoDAOProcessHelper;
@@ -23,7 +24,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
 @Path("/sensitouch/sensor")
-public class SensorController_impl {
+public class SensorDataController {
 	/**
 	 * Service to add a new sensor into the system
 	 * 
@@ -31,12 +32,13 @@ public class SensorController_impl {
 	 * @param uriInfo
 	 * @return
 	 */
-	@Path("/create")
+	@Path("/{id}/publish")
 	@POST
 	@Consumes("application/json")
-	public Response CreateSensors(Sensor sensor, @Context UriInfo uriInfo) {
+	public Response publishSensorData(@PathParam("id") String id, SensorData sensorData,
+			@Context UriInfo uriInfo) {
 		MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
-		DBObject db = daoHelper.processCreateSensorRequest(sensor);
+		DBObject db = daoHelper.publishSensorDataRequest(id, sensorData);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		return Response.created(builder.build()).build();
 

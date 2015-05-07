@@ -60,6 +60,12 @@
 			<artifactId>httpclient</artifactId>
 			<version>4.0-alpha4</version>
 		</dependency>
+		<!-- Jar for Excel data publisher -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.11</version>
+		</dependency>
 	</dependencies>
 	<repositories>
 		<repository>
