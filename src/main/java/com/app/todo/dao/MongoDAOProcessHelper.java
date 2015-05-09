@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 import com.app.restapi.todo.domain.Sensor;
+import com.app.restapi.todo.domain.SensorData;
 import com.app.restapi.todo.domain.Todo;
 import com.app.restapi.todo.domain.TodoList;
 import com.app.restapi.todo.domain.User;
@@ -63,6 +64,28 @@ public class MongoDAOProcessHelper {
 		
 				
 	}
+	
+	public DBObject publishSensorDataRequest(String id, SensorData sensorData) {
+		DaoService service = new DaoService_impl();
+		//UUID Id = UUID.randomUUID();
+		
+		sensorData.setSensorId(id);
+		
+		Gson gson = new Gson();
+		DBObject data = (DBObject) JSON.parse( gson.toJson(sensorData));
+		
+		try {
+			service.saveObject(MongoDBConnectionHelper.getCollection("SensorData"), data);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
+		return data;
+		
+				
+	}
+
+	
 	
 	public DBObject processCreateUserRequest(User user) {
 		DaoService service = new DaoService_impl();
