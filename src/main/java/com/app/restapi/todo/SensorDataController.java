@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 
-@Path("/sensitouch/sensor")
+@Path("/sensitouch/sensordata")
 public class SensorDataController {
 	/**
 	 * Service to add a new sensor into the system
