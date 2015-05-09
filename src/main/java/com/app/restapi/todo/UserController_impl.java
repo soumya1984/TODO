@@ -54,7 +54,7 @@ public class UserController_impl {
 
 		daoHelper.processCreateUserRequest(user);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		return Response.created(builder.build()).status(201).build();
+		return Response.created(builder.build()).entity(new Gson().toJson(user)).status(201).build();
 
 	}
 
