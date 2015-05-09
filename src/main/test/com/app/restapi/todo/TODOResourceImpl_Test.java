@@ -47,6 +47,7 @@ public class TODOResourceImpl_Test {
 		user.setLastName("Acharya");
 		user.setMobile("650-8635694");
 		user.setZip(94538);
+		user.setPassword("XXXXXXXX");
 		//user.setUserId("12345");
 
 		System.out.println("Sensor:" + new Gson().toJson(user));

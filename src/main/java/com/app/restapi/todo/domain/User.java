@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "user")
 @XmlType(propOrder = { "userId", "firstName", "lastName", "mobile", "emailId",
-		"addressLine1", "addressLine2" ,"city","country","zip"})
+		"addressLine1", "addressLine2" ,"city","country","password","zip"})
 public class User {
 	
 	private String userId;
@@ -19,7 +19,26 @@ public class User {
 	private String addressLine2;
 	private String city;
 	private String country;
+	
+
+	private String password;
 	private int zip;
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 	
 	
 	/**

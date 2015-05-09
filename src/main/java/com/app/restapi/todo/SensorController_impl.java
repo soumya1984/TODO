@@ -14,6 +14,10 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import com.app.restapi.todo.domain.Sensor;
+import com.app.restapi.todo.domain.TodoList;
+import com.app.restapi.todo.domain.User;
+import com.app.restapi.todo.smsservice.SmsService;
+import com.app.restapi.todo.smsservice.SmsService_impl;
 import com.app.todo.dao.DaoService;
 import com.app.todo.dao.DaoService_impl;
 import com.app.todo.dao.MongoDAOProcessHelper;
@@ -38,7 +42,7 @@ public class SensorController_impl {
 		MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
 		DBObject db = daoHelper.processCreateSensorRequest(sensor);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		return Response.created(builder.build()).build();
+		return Response.created(builder.build()).status(201).entity(new Gson().toJson(db)).build();
 
 	}
 
