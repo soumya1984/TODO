@@ -7,7 +7,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -24,14 +26,35 @@ import com.mongodb.DBObject;
 
 @Path("/sensitouch/user")
 public class UserController_impl {
+
 	@POST
 	@Path("/create")
 	@Consumes("application/json")
-	public Response CreateUser(User user, @Context UriInfo uriInfo) {
+	public Response CreateUser(User user, @Context UriInfo uriInfo) throws Exception {
 		MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
+		List<DBObject> objList = null;
+		String emailId = user.getEmailId();
+		// Check for duplicacy
+		BasicDBObject searchQuery = new BasicDBObject();
+		DaoService service = new DaoService_impl();
+		try {
+			objList = service.retrieveUsers(searchQuery,
+					MongoDBConnectionHelper.getCollection("user"));
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (DBObject obj : objList) {
+			if (emailId.equals(obj.get("emailId"))) {
+				throw new Exception(
+						"Duplicate EmailId,User Already Exixts into the system");
+
+			}
+		}
+
 		daoHelper.processCreateUserRequest(user);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		return Response.created(builder.build()).build();
+		return Response.created(builder.build()).status(201).build();
 
 	}
 
@@ -51,6 +74,33 @@ public class UserController_impl {
 
 		return Response.created(builder.build()).status(200)
 				.entity(new Gson().toJson(objList)).build();
+	}
+
+	@GET
+	@Path("/validate")
+	@Produces({ "application/xml", "application/json" })
+	public Response validateUser(@QueryParam(value = "email") String email,
+			@QueryParam(value = "password") String password,
+			@Context UriInfo uriInfo) {
+		List<DBObject> objList = null;
+		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+		BasicDBObject searchQuery = new BasicDBObject();
+		DaoService service = new DaoService_impl();
+		try {
+			objList = service.retrieveUsers(searchQuery,
+					MongoDBConnectionHelper.getCollection("user"));
+			for (DBObject obj : objList) {
+				if (null != obj.get(email) && null != obj.get(password)) {
+					return Response.created(builder.build()).status(200)
+							.entity(new Gson().toJson(objList)).build();
+				}
+			}
+
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+		return Response.created(builder.build()).status(401).build();
 	}
 
 }

@@ -42,7 +42,7 @@ public class SensorController_impl {
 		MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
 		DBObject db = daoHelper.processCreateSensorRequest(sensor);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		return Response.created(builder.build()).build();
+		return Response.created(builder.build()).status(201).entity(new Gson().toJson(db)).build();
 
 	}
 
