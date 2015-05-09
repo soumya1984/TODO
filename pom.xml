@@ -69,6 +69,6 @@
 		</repository>
 	</repositories>
 	<build>
-		<finalName>TODO</finalName>
+		<finalName>Sensitouch</finalName>
 	</build>
 </project>

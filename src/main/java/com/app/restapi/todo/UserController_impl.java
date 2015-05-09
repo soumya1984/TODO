@@ -102,5 +102,31 @@ public class UserController_impl {
 
 		return Response.created(builder.build()).status(401).build();
 	}
+	
+	@GET
+	@Path("/byemail")
+	@Produces({ "application/xml", "application/json" })
+	public Response getUserByEmail(@QueryParam(value = "email") String email,
+			@Context UriInfo uriInfo) {
+		List<DBObject> objList = null;
+		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+		BasicDBObject searchQuery = new BasicDBObject();
+		DaoService service = new DaoService_impl();
+		try {
+			objList = service.retrieveUsers(searchQuery,
+					MongoDBConnectionHelper.getCollection("user"));
+			for (DBObject obj : objList) {
+                    if(email.equals(obj.get("emailId"))){
+                    	return Response.created(builder.build()).status(200)
+                				.entity(new Gson().toJson(obj)).build();
+                    }
+			}
+
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+		return Response.created(builder.build()).status(401).build();
+	}
 
 }
