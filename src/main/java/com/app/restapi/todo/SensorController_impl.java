@@ -7,7 +7,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
@@ -53,7 +55,7 @@ public class SensorController_impl {
       */
 	@GET
 	@Produces({ "application/xml", "application/json" })
-	public Response searchTodobyId(@Context UriInfo uriInfo) {
+	public Response searchsSensors(@Context UriInfo uriInfo) {
 		List<DBObject> objList = null;
 		BasicDBObject searchQuery = new BasicDBObject();
 		// searchQuery.put("_id", id);
@@ -70,6 +72,38 @@ public class SensorController_impl {
 
 		return Response.created(builder.build()).status(200)
 				.entity(new Gson().toJson(objList)).build();
+	}
+	
+    /**
+     * Get the sensors by userId
+     * @param uriInfo
+     * @return
+     */
+	@GET
+	@Path("/userid")
+	@Produces({ "application/xml", "application/json" })
+	public Response searchSensorById(@Context UriInfo uriInfo,@QueryParam(value = "userId") String userId) {
+		List<DBObject> objList = null;
+		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+		BasicDBObject searchQuery = new BasicDBObject();
+		// searchQuery.put("_id", id);
+		DaoService service = new DaoService_impl();
+		try {
+			objList = service.retrieveSensor(searchQuery,
+					MongoDBConnectionHelper.getCollection("sensor"));
+			for(DBObject dbobj:objList){
+				if(new Integer(userId).equals(dbobj.get("userid"))){
+					return Response.created(builder.build()).status(200)
+							.entity(new Gson().toJson(dbobj)).build();
+				}
+			}
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return null;
 	}
 
 }
