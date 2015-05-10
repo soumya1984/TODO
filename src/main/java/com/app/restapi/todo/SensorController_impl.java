@@ -1,6 +1,7 @@
 package com.app.restapi.todo;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -88,15 +89,19 @@ public class SensorController_impl {
 		BasicDBObject searchQuery = new BasicDBObject();
 		// searchQuery.put("_id", id);
 		DaoService service = new DaoService_impl();
+		List<DBObject> sensors=new ArrayList<DBObject>();
 		try {
 			objList = service.retrieveSensor(searchQuery,
 					MongoDBConnectionHelper.getCollection("sensor"));
 			for(DBObject dbobj:objList){
 				if(new Integer(userId).equals(dbobj.get("userid"))){
-					return Response.created(builder.build()).status(200)
-							.entity(new Gson().toJson(dbobj)).build();
+					sensors.add(dbobj);
+					
 				}
 			}
+			return Response.created(builder.build()).status(200)
+					.entity(new Gson().toJson(sensors)).build();
+			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
