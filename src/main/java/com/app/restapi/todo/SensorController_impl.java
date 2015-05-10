@@ -94,7 +94,7 @@ public class SensorController_impl {
 			objList = service.retrieveSensor(searchQuery,
 					MongoDBConnectionHelper.getCollection("sensor"));
 			for(DBObject dbobj:objList){
-				if(new Integer(userId).equals(dbobj.get("userid"))){
+				if(userId.equals(dbobj.get("userid"))){
 					sensors.add(dbobj);
 					
 				}
