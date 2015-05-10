@@ -11,7 +11,7 @@ public class Sensor {
 	private String sensorId;
 	private String sensorName;
 	private String sensorStatus;
-	private int userid;
+	private String userid;
 	private String sensorType;
 	private long latitude;
 	private long longitude;	
@@ -45,7 +45,7 @@ public class Sensor {
 	 * @return the userid
 	 */
 	@XmlElement
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
@@ -117,7 +117,7 @@ public class Sensor {
 	 * @param userid
 	 *            the userid to set
 	 */
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 

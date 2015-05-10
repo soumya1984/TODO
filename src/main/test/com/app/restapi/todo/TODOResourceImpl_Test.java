@@ -30,7 +30,7 @@ public class TODOResourceImpl_Test {
 		sensor.setLatitude(37L);
 		sensor.setLatitude(121L);
 		sensor.setSensorStatus("Active");
-		sensor.setUserid(123);
+		sensor.setUserid("123");
 
 		System.out.println("Sensor:" + new Gson().toJson(sensor));
 
