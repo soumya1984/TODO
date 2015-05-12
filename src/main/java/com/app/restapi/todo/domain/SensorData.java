@@ -11,6 +11,21 @@ public class SensorData {
 	private String sensorId;
 	private String sensorData;
 	private String sensorStatus;
+	private String sensorPowerStatus;
+
+	/**
+	 * @return the sensorPowerStatus
+	 */
+	public String getSensorPowerStatus() {
+		return sensorPowerStatus;
+	}
+
+	/**
+	 * @param sensorPowerStatus the sensorPowerStatus to set
+	 */
+	public void setSensorPowerStatus(String sensorPowerStatus) {
+		this.sensorPowerStatus = sensorPowerStatus;
+	}
 
 	/**
 	 * @return the sensorId

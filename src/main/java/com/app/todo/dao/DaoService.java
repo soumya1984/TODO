@@ -2,10 +2,8 @@ package com.app.todo.dao;
 
 import java.util.List;
 
-import com.app.restapi.todo.domain.Sensor;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
-import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 
 public interface DaoService {

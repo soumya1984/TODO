@@ -8,11 +8,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
 import com.app.restapi.todo.domain.Sensor;
+import com.app.restapi.todo.domain.SensorData;
 import com.app.restapi.todo.domain.Todo;
 import com.app.restapi.todo.domain.TodoList;
 import com.app.restapi.todo.domain.User;
@@ -54,6 +57,20 @@ public class TODOResourceImpl_Test {
 
 	}
 
+	
+	@Test
+	public void testGetSensorData() {
+		SensorData sensorData = new SensorData();
+		//Map<String, String> data = new HashMap<String, String>();
+		sensorData.setSensorData("Yes");
+		sensorData.setSensorStatus("online");
+		sensorData.setSensorPowerStatus("Full");
+		
+		System.out.println("sensorData:" + new Gson().toJson(sensorData));
+
+	}
+
+	
 	// @Test
 	public void testJson() {
 		try {

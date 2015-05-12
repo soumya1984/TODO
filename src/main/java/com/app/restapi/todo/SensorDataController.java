@@ -40,8 +40,8 @@ public class SensorDataController {
 		MongoDAOProcessHelper daoHelper = new MongoDAOProcessHelper();
 		DBObject db = daoHelper.publishSensorDataRequest(id, sensorData);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		return Response.created(builder.build()).build();
-
+		//return Response.created(builder.build()).build();
+		return Response.created(builder.build()).status(201).entity(new Gson().toJson(db)).build();
 	}
 
      /**
@@ -50,15 +50,16 @@ public class SensorDataController {
       * @return
       */
 	@GET
+	@Path("/{id}")
 	@Produces({ "application/xml", "application/json" })
-	public Response searchTodobyId(@Context UriInfo uriInfo) {
+	public Response searchDatabyId(@PathParam("id") String id, @Context UriInfo uriInfo) {
 		List<DBObject> objList = null;
 		BasicDBObject searchQuery = new BasicDBObject();
-		// searchQuery.put("_id", id);
+		searchQuery.put("sensorId", id);		
 		DaoService service = new DaoService_impl();
 		try {
 			objList = service.retrieveSensor(searchQuery,
-					MongoDBConnectionHelper.getCollection("sensor"));
+					MongoDBConnectionHelper.getCollection("SensorData"));
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,6 +69,7 @@ public class SensorDataController {
 
 		return Response.created(builder.build()).status(200)
 				.entity(new Gson().toJson(objList)).build();
+		
 	}
 
 }
