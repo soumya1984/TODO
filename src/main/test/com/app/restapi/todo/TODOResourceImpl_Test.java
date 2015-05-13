@@ -31,9 +31,10 @@ public class TODOResourceImpl_Test {
 		Sensor sensor = new Sensor();
 		sensor.setSensorName("BackyardWaterSensor");
 		sensor.setLatitude(37.12);
-		sensor.setLatitude(-12.12);
+		sensor.setLongitude(-12.12);
 		sensor.setSensorStatus("Active");
 		sensor.setUserid("223453");
+		sensor.setSensorDescription("Welcome Home");
 
 		System.out.println("Sensor:" + new Gson().toJson(sensor));
 

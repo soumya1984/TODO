@@ -6,17 +6,31 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "sensor")
 @XmlType(propOrder = { "sensorId", "sensorName", "sensorStatus", "userid",
-		"sensorType" })
+		"sensorType", "sensorDescription" })
 public class Sensor {
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+
 	private String sensorId;
 	private String sensorName;
 	private String sensorStatus;
 	private String userid;
 	private String sensorType;
 	private double latitude;
-	private double longitude;	
-	
-	
+	private double longitude;
+	private String sensorDescription;
+
+	/**
+	 * @return the sensorDescription
+	 */
+	@XmlElement
+	public String getSensorDescription() {
+		return sensorDescription;
+	}
+
 	/**
 	 * @return the sensorId
 	 */
@@ -129,6 +143,14 @@ public class Sensor {
 		this.sensorType = sensorType;
 	}
 
+	/**
+	 * @param sensorDescription
+	 *            the sensorDescription to set
+	 */
+	public void setSensorDescription(String sensorDescription) {
+		this.sensorDescription = sensorDescription;
+	}
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -138,7 +160,9 @@ public class Sensor {
 	public String toString() {
 		return "Sensor [sensorId=" + sensorId + ", sensorName=" + sensorName
 				+ ", sensorStatus=" + sensorStatus + ", userid=" + userid
-				+ ", sensorType=" + sensorType + "]";
+				+ ", sensorType=" + sensorType + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", sensorDescription="
+				+ sensorDescription + "]";
 	}
 
 }
