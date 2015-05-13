@@ -43,7 +43,12 @@ public class SensorDataController {
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		//return Response.created(builder.build()).build();
 		//Send Out emergency Email
+		//notification service starts here..
+		try{
 		SendMailSSL.SendMailWithSSL();
+		}catch(Exception e){
+			System.out.println("not able to send notification"+e.getLocalizedMessage());
+		}
 		return Response.created(builder.build()).status(201).entity(new Gson().toJson(db)).build();
 	}
 
