@@ -30,13 +30,13 @@ public class SendMailSSL {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("from@no-spam.com"));
+			message.setFrom(new InternetAddress("info@sensitouch.com"));
 			message.setRecipients(
 					Message.RecipientType.TO,
 					InternetAddress
 							.parse("mahejain@gmail.com,sweerkaul@gmail.com,parnits@gmail.com "));
-			message.setSubject("Motion Sensor Detected Activity");
-			message.setText("Motion Sensor Detected and activity,"
+			message.setSubject("Motion Sensor#3387XOD Detected Activity");
+			message.setText("Motion Sensor Detected an activity,"
 					+ "\n\n emergency service has been informed!");
 
 			Transport.send(message);

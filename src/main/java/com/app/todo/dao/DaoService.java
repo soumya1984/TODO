@@ -17,6 +17,7 @@ public interface DaoService {
 	
 	public List<DBObject> retrieveSensor(BasicDBObject dbObj,
 			DBCollection collectionName);
+	
 	public List<DBObject> retrieveUsers(BasicDBObject dbObj,
 			DBCollection collectionName);
 
@@ -25,6 +26,9 @@ public interface DaoService {
 	
 	public BasicDBObject searchRecoed(BasicDBObject dbObj,
 			DBCollection collectionName,String id);
+	
+	public List<DBObject> retrieveSensorData(BasicDBObject whereQuery,
+			DBCollection collectionName);
 	
 	public void saveObject(DBCollection collectionName,DBObject db);
 
