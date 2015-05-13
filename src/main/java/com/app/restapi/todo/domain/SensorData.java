@@ -11,7 +11,24 @@ public class SensorData {
 	private String sensorId;
 	private String sensorData;
 	private String sensorStatus;
+	private String online;
 	private String sensorPowerStatus;
+
+	
+	
+	/**
+	 * @return the online
+	 */
+	public String getOnline() {
+		return online;
+	}
+
+	/**
+	 * @param online the online to set
+	 */
+	public void setOnline(String online) {
+		this.online = online;
+	}
 
 	/**
 	 * @return the sensorPowerStatus

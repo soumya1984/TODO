@@ -68,8 +68,11 @@ public class SensorDataController {
 		searchQuery.put("sensorId", id);		
 		DaoService service = new DaoService_impl();
 		try {
-			objList = service.retrieveSensorData(searchQuery,
+//			objList = service.retrieveSensorData(searchQuery,
+//					MongoDBConnectionHelper.getCollection("SensorData"));
+			objList = service.retrieveSensor(searchQuery,
 					MongoDBConnectionHelper.getCollection("SensorData"));
+
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
