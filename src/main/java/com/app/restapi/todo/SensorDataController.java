@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import com.amazon.sns.SendMailSSL;
 import com.app.restapi.todo.domain.SensorData;
 import com.app.todo.dao.DaoService;
 import com.app.todo.dao.DaoService_impl;
@@ -41,6 +42,8 @@ public class SensorDataController {
 		DBObject db = daoHelper.publishSensorDataRequest(id, sensorData);
 		UriBuilder builder = uriInfo.getAbsolutePathBuilder();
 		//return Response.created(builder.build()).build();
+		//Send Out emergency Email
+		SendMailSSL.SendMailWithSSL();
 		return Response.created(builder.build()).status(201).entity(new Gson().toJson(db)).build();
 	}
 
