@@ -29,11 +29,11 @@ public class TODOResourceImpl_Test {
 	@Test
 	public void testGetSensor() {
 		Sensor sensor = new Sensor();
-		sensor.setSensorName("MySensor");
+		sensor.setSensorName("BackyardWaterSensor");
 		sensor.setLatitude(37.12);
 		sensor.setLatitude(-12.12);
 		sensor.setSensorStatus("Active");
-		sensor.setUserid("123");
+		sensor.setUserid("223453");
 
 		System.out.println("Sensor:" + new Gson().toJson(sensor));
 
