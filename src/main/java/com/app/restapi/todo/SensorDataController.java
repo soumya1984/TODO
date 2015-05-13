@@ -45,7 +45,9 @@ public class SensorDataController {
 		//Send Out emergency Email
 		//notification service starts here..
 		try{
-		SendMailSSL.SendMailWithSSL();
+			if(sensorData.getSensorData().equalsIgnoreCase("HIGH")){
+				SendMailSSL.SendMailWithSSL();
+			}
 		}catch(Exception e){
 			System.out.println("not able to send notification"+e.getLocalizedMessage());
 		}
