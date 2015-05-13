@@ -30,8 +30,8 @@ public class TODOResourceImpl_Test {
 	public void testGetSensor() {
 		Sensor sensor = new Sensor();
 		sensor.setSensorName("MySensor");
-		sensor.setLatitude(37L);
-		sensor.setLatitude(121L);
+		sensor.setLatitude(37.12);
+		sensor.setLatitude(-12.12);
 		sensor.setSensorStatus("Active");
 		sensor.setUserid("123");
 

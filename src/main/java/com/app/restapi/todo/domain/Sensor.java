@@ -13,8 +13,8 @@ public class Sensor {
 	private String sensorStatus;
 	private String userid;
 	private String sensorType;
-	private long latitude;
-	private long longitude;	
+	private Double latitude;
+	private Double longitude;	
 	
 	
 	/**
@@ -61,7 +61,7 @@ public class Sensor {
 	 * @return the latitude
 	 */
 	@XmlElement
-	public long getLatitude() {
+	public Double getLatitude() {
 		return latitude;
 	}
 
@@ -69,7 +69,7 @@ public class Sensor {
 	 * @return the longitude
 	 */
 	@XmlElement
-	public long getLongitude() {
+	public Double getLongitude() {
 		return longitude;
 	}
 
@@ -77,7 +77,7 @@ public class Sensor {
 	 * @param latitude
 	 *            the latitude to set
 	 */
-	public void setLatitude(long latitude) {
+	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
 
@@ -85,7 +85,7 @@ public class Sensor {
 	 * @param longitude
 	 *            the longitude to set
 	 */
-	public void setLongitude(long longitude) {
+	public void setLongitude(Double longitude) {
 		this.longitude = longitude;
 	}
 
