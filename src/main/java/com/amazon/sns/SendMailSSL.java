@@ -23,7 +23,7 @@ public class SendMailSSL {
 				new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(
-								"", "");
+								"sensorsjsu@gmail.com", "ragingbull");
 					}
 				});
 
